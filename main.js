@@ -2,7 +2,7 @@
 var app = new Vue({
   el: "#app",
   data: {
-    product: "Kojinės",
+    product: "Kojinėss",
     image: "./images/vmSocks-blue-onWhite.png",
     altText: "Viena pora kojinių",
     inStock: 1,
@@ -10,7 +10,7 @@ var app = new Vue({
     details: [
       "80% medvilnė",
       "20% polisterolas",
-      "spalva saulės poveikiui atspari"
+      "spalva saulės poveikiui atspari."
     ],
     variants: [
       {

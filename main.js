@@ -1,11 +1,11 @@
 //@ts-ignore
-var app = new Vue({ // eslint-disable-line
+var app = new Vue({ 
   el: "#app",
   data: {
     product: "Kojinės",
     image: "./images/vmSocks-blue-onWhite.png",
     altText: "Viena pora kojinių",
-    inStock: 1,
+    inStock: 2,
     onSale: true,
     details: [
       "80% medvilnė",
@@ -28,7 +28,7 @@ var app = new Vue({ // eslint-disable-line
   },
   methods: {
     addToCart() {
-      this.cart++
+      this.cart++;
     },
     removeFromCart() {
       this.cart--;

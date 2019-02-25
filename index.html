@@ -37,13 +37,17 @@
             class="color-box" 
             :style="{ backgroundColor: variant.variantColor }" 
             v-for="variant in variants" :key="variant.variantId"
-            @mouseover='updateProduct(variant.variantImage)'
-            >
+            @mouseover='updateProduct(variant.variantImage)'>
           </div>
           
-          <!-- @click arba v-on:click=.... -->
           <div>
-            <button @click='addToCart'>Įdėti į krepšelį</button> 
+            <!-- @click arba v-on:click=.... -->
+            <button @click='addToCart'
+             :disabled='cart>=inStock'
+             :class= '{disabledButton: cart>=inStock}' >
+             Įdėti į krepšelį
+            </button>
+
             <button class='removeFromCart' v-if='cart > 0 ' @click='removeFromCart'>Išimti iš krepšelio</button> 
             <div class="cart">
               <p>Cart: {{ cart }}</p>

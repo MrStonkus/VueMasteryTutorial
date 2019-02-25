@@ -1,5 +1,5 @@
 //@ts-ignore
-var app = new Vue({
+var app = new Vue({ // eslint-disable-line
   el: "#app",
   data: {
     product: "Kojinės",

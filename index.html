@@ -33,8 +33,12 @@
           </ul>
 
           <h3>Galimos spalvos:</h3>
-          <div v-for="variant in variants" :key="variant.variantId">
-            <p @mouseover='updateProduct(variant.variantImage)'>{{ variant.variantColor }}</p>
+          <div 
+            class="color-box" 
+            :style="{ backgroundColor: variant.variantColor }" 
+            v-for="variant in variants" :key="variant.variantId"
+            @mouseover='updateProduct(variant.variantImage)'
+            >
           </div>
           
           <!-- @click arba v-on:click=.... -->

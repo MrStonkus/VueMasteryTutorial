@@ -15,12 +15,12 @@ var app = new Vue({ // eslint-disable-line
     variants: [
       {
         variantId: 111,
-        variantColor: 'žalia',
+        variantColor: 'green',
         variantImage: './images/vmSocks-green-onWhite.png'
       },
       {
         variantId: 112,
-        variantColor: 'mėlyna',
+        variantColor: "blue",
         variantImage: './images/vmSocks-blue-onWhite.png'
       },
     ],

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="lt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Produkto aplikacija</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="nav-bar"></div>
+    <div id="app">
+      <div class="product">
+
+        <div class="product-image">
+          <img :src="image" :alt="altText" />
+        </div>
+
+        <div class="product-info">
+          <h1>{{ product }}</h1>
+          <p v-if="inStock > 10">
+            <span class="onSale" v-show="onSale"> Išpardavimas! </span>
+            Sandėlyje 10+ vnt.
+          </p>
+          <p v-else-if="inStock <= 10 && inStock > 0">
+            <span class="onSale" v-show="onSale"> Išpardavimas! </span>
+            Liko {{ inStock }} vnt.
+          </p>
+          <p v-else="inStock">Sandėlyje nėra</p>
+
+          <ul>
+            <li v-for='detail in details'>{{ detail }}</li>
+          </ul>
+
+          <h3>Galimos spalvos:</h3>
+          <div v-for="variant in variants" :key="variant.variantId">
+            <p @mouseover='updateProduct(variant.variantImage)'>{{ variant.variantColor }}</p>
+          </div>
+          
+          <!-- @click arba v-on:click=.... -->
+          <div>
+            <button @click='addToCart'>Įdėti į krepšelį</button> 
+            <button class='removeFromCart' v-if='cart > 0 ' @click='removeFromCart'>Išimti iš krepšelio</button> 
+            <div class="cart">
+              <p>Cart: {{ cart }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

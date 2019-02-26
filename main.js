@@ -6,7 +6,6 @@ var app = new Vue({
     product: 'Kojinės',
     selectedVariant: 0,
     altText: "Viena pora kojinių",
-    inStock: 2,
     onSale: true,
     details: [
       "80% medvilnė",
@@ -17,12 +16,14 @@ var app = new Vue({
       {
         variantId: 111,
         variantColor: 'green',
-        variantImage: './images/vmSocks-green-onWhite.png'
+        variantImage: './images/vmSocks-green-onWhite.png',
+        variantQuantity: 10
       },
       {
         variantId: 112,
         variantColor: "blue",
-        variantImage: './images/vmSocks-blue-onWhite.png'
+        variantImage: './images/vmSocks-blue-onWhite.png',
+        variantQuantity: 0
       },
     ],
     cart: 0
@@ -37,7 +38,8 @@ var app = new Vue({
     updateProduct(index) {
       this.selectedVariant = index;
       console.log(index);
-    }
+    },
+    
   },
   computed: {
     tittle() {
@@ -45,6 +47,9 @@ var app = new Vue({
     },
     image() {
       return this.variants[this.selectedVariant].variantImage;
+    },
+    inStock() {
+      return this.variants[this.selectedVariant].variantQuantity;
     }
   },
 });

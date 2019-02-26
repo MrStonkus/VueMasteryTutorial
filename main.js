@@ -2,7 +2,8 @@
 var app = new Vue({ 
   el: "#app",
   data: {
-    product: "Kojinės",
+    brand: '"Armani"',
+    product: 'Kojinės',
     image: "./images/vmSocks-blue-onWhite.png",
     altText: "Viena pora kojinių",
     inStock: 2,
@@ -36,5 +37,10 @@ var app = new Vue({
     updateProduct(variantImage) {
       this.image = variantImage;
     }
-  }
+  },
+  computed: {
+    tittle() {
+      return this.brand + ' ' + this.product;
+    }
+  },
 });

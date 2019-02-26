@@ -4,7 +4,7 @@ var app = new Vue({
   data: {
     brand: '"Armani"',
     product: 'Kojinės',
-    image: "./images/vmSocks-blue-onWhite.png",
+    selectedVariant: 0,
     altText: "Viena pora kojinių",
     inStock: 2,
     onSale: true,
@@ -34,13 +34,17 @@ var app = new Vue({
     removeFromCart() {
       this.cart--;
     },
-    updateProduct(variantImage) {
-      this.image = variantImage;
+    updateProduct(index) {
+      this.selectedVariant = index;
+      console.log(index);
     }
   },
   computed: {
     tittle() {
       return this.brand + ' ' + this.product;
+    },
+    image() {
+      return this.variants[this.selectedVariant].variantImage;
     }
   },
 });

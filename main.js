@@ -1,47 +1,56 @@
+
 //@ts-ignore
 Vue.component('product', {
+  props: {
+    premium: {
+      type: Boolean,
+      required: true
+    }
+  },
   template:`
   <div class="product">
-    <div class="product-image">
-      <img :src="image" :alt="altText" />
+  <div class="product-image">
+  <img :src="image" :alt="altText" />
+  </div>
+  
+  <div class="product-info">
+    <h1>{{ tittle }}</h1>
+    <p v-if="inStock > 10">
+      <span class="onSale" v-show="onSale"> Išpardavimas! </span>
+      Sandėlyje 10+ vnt.
+    </p>
+    <p v-else-if="inStock <= 10 && inStock > 0">
+      <span class="onSale" v-show="onSale"> Išpardavimas! </span>
+      Liko {{ inStock }} vnt.
+    </p>
+    <p v-else="inStock">Sandėlyje nėra</p>
+
+    <p>Vartotojas yra premium: {{ premium }}
+
+    <ul>
+      <li v-for='detail in details'>{{ detail }}</li>
+    </ul>
+
+    <h3>Galimos spalvos:</h3>
+    <div 
+      class="color-box" 
+      :style="{ backgroundColor: variant.variantColor }" 
+      v-for="(variant, index) in variants" :key="variant.variantId"
+      @mouseover='updateProduct(index)'>
     </div>
+    
+    <div>
+      <!-- @click arba v-on:click=.... -->
+      <button @click='addToCart'
+        :disabled='cart>=inStock'
+        :class= '{disabledButton: cart>=inStock}' >
+        Įdėti į krepšelį
+      </button>
 
-    <div class="product-info">
-      <h1>{{ tittle }}</h1>
-      <p v-if="inStock > 10">
-        <span class="onSale" v-show="onSale"> Išpardavimas! </span>
-        Sandėlyje 10+ vnt.
-      </p>
-      <p v-else-if="inStock <= 10 && inStock > 0">
-        <span class="onSale" v-show="onSale"> Išpardavimas! </span>
-        Liko {{ inStock }} vnt.
-      </p>
-      <p v-else="inStock">Sandėlyje nėra</p>
-
-      <ul>
-        <li v-for='detail in details'>{{ detail }}</li>
-      </ul>
-
-      <h3>Galimos spalvos:</h3>
-      <div 
-        class="color-box" 
-        :style="{ backgroundColor: variant.variantColor }" 
-        v-for="(variant, index) in variants" :key="variant.variantId"
-        @mouseover='updateProduct(index)'>
+      <button class='removeFromCart' v-if='cart > 0 ' @click='removeFromCart'>Išimti iš krepšelio</button> 
+      <div class="cart">
+        <p>Cart: {{ cart }}</p>
       </div>
-      
-      <div>
-        <!-- @click arba v-on:click=.... -->
-        <button @click='addToCart'
-          :disabled='cart>=inStock'
-          :class= '{disabledButton: cart>=inStock}' >
-          Įdėti į krepšelį
-        </button>
-
-        <button class='removeFromCart' v-if='cart > 0 ' @click='removeFromCart'>Išimti iš krepšelio</button> 
-        <div class="cart">
-          <p>Cart: {{ cart }}</p>
-        </div>
 
       </div>
     </div>
@@ -106,4 +115,7 @@ Vue.component('product', {
 //@ts-ignore
 var app = new Vue({ 
   el: "#app",
+  data: {
+    premium: false
+  }
 });

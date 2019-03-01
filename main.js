@@ -25,7 +25,7 @@ Vue.component('product', {
     </p>
     <p v-else="inStock">Sandėlyje nėra</p>
 
-    <p>Vartotojas yra premium: {{ premium }}
+    <p>Pristatymas: {{ shipping }}
 
     <ul>
       <li v-for='detail in details'>{{ detail }}</li>
@@ -108,6 +108,13 @@ Vue.component('product', {
     },
     inStock() {
       return this.variants[this.selectedVariant].variantQuantity;
+    },
+    shipping() {
+      if (this.premium) {
+        return 'nemokamas'
+      } else {
+        return 2.66;
+      }
     }
   }
 })
@@ -116,6 +123,6 @@ Vue.component('product', {
 var app = new Vue({ 
   el: "#app",
   data: {
-    premium: false
+    premium: true
   }
 });
